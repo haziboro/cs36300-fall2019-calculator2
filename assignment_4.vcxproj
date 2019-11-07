@@ -151,7 +151,18 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Abst_Builder.cpp" />
+    <ClCompile Include="Abst_Visitor.cpp" />
+    <ClCompile Include="Builder.cpp" />
+    <ClCompile Include="Client.cpp" />
     <ClCompile Include="driver.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Visitor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Builder.h" />
+    <ClInclude Include="Client.h" />
+    <ClInclude Include="Visitor.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
