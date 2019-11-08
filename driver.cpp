@@ -9,7 +9,6 @@ int main()
 	Visitor visitor(root_);
 
 	Client* c = new Client(&builder, &visitor);
-	delete[] c;
 
 	return 0;
 }

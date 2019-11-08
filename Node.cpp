@@ -1,20 +1,16 @@
-#include <iostream>
-#include "library/Stack.h"
+#include "Node.h"
 
-//Node to compose elements of arithmetic expression tree
-struct Node {
-	//constructor
-	Node(std::string data)
-		:data_(data),
-		left_(NULL),
-		right_(NULL) {};
+//constructor
+Node::Node(std::string data)
+	:data_(data),
+	left_(NULL),
+	right_(NULL)
+{
 
-	//operator or operand
-	std::string data_;
+}
 
-	//left child
-	Node* left_;
-
-	//right child
-	Node* right_;
-};
+//destructor
+Node::~Node()
+{
+	delete[] left_, right_;
+}

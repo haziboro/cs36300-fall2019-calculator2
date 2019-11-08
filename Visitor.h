@@ -21,6 +21,15 @@ public:
 	void in_order();
 
 	/**
+	* Converts numbers in string format to integers
+	*
+	* @param[in]	num			string to convert
+	* @return		x			converted integer
+	* @exception	2			invalid integer conversion
+	**/
+	int converter(std::string num);
+
+	/**
 	* Return numerical value of top node of Stack s_, throws exception if not present
 	* 
 	* @exception	3		No equation to solve

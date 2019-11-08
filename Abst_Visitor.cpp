@@ -1,4 +1,4 @@
-#include "Node.cpp"
+#include "Node.h"
 
 #ifndef _ABST_VISITOR_CPP_
 #define _ABST_VISITOR_CPP_
