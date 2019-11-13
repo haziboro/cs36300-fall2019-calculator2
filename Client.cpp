@@ -113,7 +113,28 @@ int Client::precedence(std::string op)
 //build
 void Client::build(Queue<std::string>& postfix, Abst_Builder & builder)
 {
-
+	std::string node_val;	//holds node value from postfix
+	while (postfix.is_empty() == false) {
+		node_val = postfix.dequeue();
+		if (node_val == "+") {
+			builder.build_add();
+		}
+		else if (node_val == "-") {
+			builder.build_sub();
+		}
+		else if (node_val == "*") {
+			builder.build_mult();
+		}
+		else if (node_val == "/") {
+			builder.build_div();
+		}
+		else if (node_val == "%") {
+			builder.build_mod();
+		}
+		else{
+			builder.build_num(node_val);
+		}
+	}
 }
 
 //solve
@@ -159,10 +180,7 @@ void Client::run_calculator()
 		try {
 			if (run == true) {
 				infix_to_postfix(infix_, *postfix_);
-				while (postfix_->is_empty() == false) {		//delete when done testing
-					std::cout << postfix_->dequeue();
-				}
-				std::cout << std::endl;
+				build(*postfix_, *builder_);
 				//std::cout << solve(*visitor_) << std::endl;
 			}
 			else {

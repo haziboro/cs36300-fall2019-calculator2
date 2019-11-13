@@ -5,10 +5,10 @@
 int main()
 {
 	Stack<Node*> root_;
-	Builder builder(root_);
-	Visitor visitor(root_);
+	Builder *builder = new Builder(root_);
+	Visitor *visitor = new Visitor(root_);
 
-	Client* c = new Client(&builder, &visitor);
+	Client* c = new Client(builder, visitor);
 
 	return 0;
 }

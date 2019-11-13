@@ -14,47 +14,33 @@ public:
 	~Builder();
 
 	/**
-	* Creates operand Node with no children, pushes Node to Stack s_
+	* pops top node of stack and returns a pointer to it. Throws exception if stack is empty.
+	* 
+	* @return		child		pointer to node
+	* @exception	1			Invalid operation	
+	**/
+	Node* make_child();
+
+	/**
+	* Creates operand Node with no children, pushes Node to Stack s_.
 	* 
 	* @param[in]	n		Operand
 	**/
-	void build_num(int n);
+	void build_num(std::string n);
 
-	/**
-	* Creates "+" operation Node with two operands as children. Throws exception if less than two elements available
-	* 
-	* @exception	1		Invalid Operation
-	**/
+	//Creates "+" operation Node with two operands as children, pushes to stack.
 	void build_add();
-
-	/**
-	* Creates "-" operation Node with two operands as children. Throws exception if less than two elements available
-	*
-	* @exception	1		Invalid Operation
-	**/
+	
+	//Creates "-" operation Node with two operands as children, pushes to stack.
 	void build_sub();
 
-	/**
-	* Creates "*" operation Node with two operands as children. Throws exception if less than two elements available
-	*
-	* @exception	1		Invalid Operation
-	**/
+	//Creates "*" operation Node with two operands as children, pushes to stack. 
 	void build_mult();
 
-	/**
-	* Creates "/" operation Node with two operands as children. Throws exception if less than two elements available or divide by zero
-	*
-	* @exception	1		Invalid Operation
-	* @exception	2		Cannot divide by zero
-	**/
+	//Creates "/" operation Node with two operands as children, pushes to stack.
 	void build_div();
 
-	/**
-	* Creates "%" operation Node with two operands as children. Throws exception if less than two elements available or Modulo by zero
-	*
-	* @exception	1		Invalid Operation
-	* @exception	2		Cannot perform modulus on zero
-	**/
+	//Creates "%" operation Node with two operands as children, pushes to stack.
 	void build_mod();
 
 private:

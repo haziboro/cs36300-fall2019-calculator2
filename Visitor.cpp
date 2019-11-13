@@ -4,10 +4,7 @@
 
 //constructor
 Visitor::Visitor(Stack<Node*> & s)
-	:s_(s)
-{
-
-}
+	:s_(s) {}
 
 //destructor
 Visitor::~Visitor()

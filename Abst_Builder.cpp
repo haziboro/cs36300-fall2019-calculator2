@@ -7,7 +7,9 @@
 class Abst_Builder
 {
 public:
-	virtual void build_num(int n) = 0;
+	virtual Node* make_child() = 0;
+	
+	virtual void build_num(std::string n) = 0;
 
 	virtual void build_add() = 0;
 
