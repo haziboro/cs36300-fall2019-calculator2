@@ -1,0 +1,39 @@
+project (assignment4) {
+  exename = assignment4
+  install = .
+ 
+  specific (make, gnuace) {
+	compile_flags += -std=c++11
+  }
+
+  Source_Files {
+	driver.cpp
+	Node.cpp
+
+	client/Client.cpp
+
+	builder/Abst_Builder.cpp
+	builder/Builder.cpp
+
+	visitor/Abst_Visitor.cpp
+	visitor/Visitor.cpp
+  }
+
+  Inline_Files {
+	library/Stack.inl
+  }
+
+  Header_Files {
+	Node.h
+
+	client/Client.h
+	builder/Builder.h
+	visitor/Visitor.h
+	library/Stack.h
+  }
+
+  Template_Files {
+  	library/Stack.cpp
+  }
+  
+}
