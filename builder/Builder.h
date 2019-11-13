@@ -14,19 +14,11 @@ public:
 	~Builder();
 
 	/**
-	* pops top node of stack and returns a pointer to it. Throws exception if stack is empty.
-	* 
-	* @return		child		pointer to node
-	* @exception	1			Invalid operation	
-	**/
-	Node* make_child();
-
-	/**
 	* Creates operand Node with no children, pushes Node to Stack s_.
 	* 
 	* @param[in]	n		Operand
 	**/
-	void build_num(std::string n);
+	void build_operand(std::string n);
 
 	//Creates "+" operation Node with two operands as children, pushes to stack.
 	void build_add();
@@ -43,7 +35,18 @@ public:
 	//Creates "%" operation Node with two operands as children, pushes to stack.
 	void build_mod();
 
+	//destroys tree elements
+	void demolish();
+
 private:
+	/**
+	* pops top node of stack and returns a pointer to it. Throws exception if stack is empty.
+	*
+	* @return		child		pointer to node
+	* @exception	1			Invalid operation
+	**/
+	Node* make_child();
+
 	Stack<Node*> & s_;
 };
 

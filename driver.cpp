@@ -1,6 +1,6 @@
-#include "Client.h"
-#include "Visitor.h"
-#include "Builder.h"
+#include "client/Client.h"
+#include "visitor/Visitor.h"
+#include "builder/Builder.h"
 
 int main()
 {

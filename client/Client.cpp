@@ -4,18 +4,11 @@
 //constructor
 Client::Client(Abst_Builder* builder, Abst_Visitor* visitor)
 	:infix_(""),
-	postfix_(new Queue<std::string>),
 	builder_(builder),
 	visitor_(visitor)
 
 {
 	run_calculator();
-}
-
-//destructor
-Client::~Client()
-{
-	delete[] postfix_;
 }
 
 //request_input
@@ -36,18 +29,17 @@ bool Client::request_input(std::string& infix)
 }
 
 //infix_to_postfix
-bool Client::infix_to_postfix(const std::string& infix, Queue<std::string>& postfix)
+bool Client::infix_to_tree(const std::string& infix, Abst_Builder& builder)
 {
 	std::istringstream input(infix);//input stream
 	std::string token;				//current token of stream
-	std::string temp;				//operand to enqeue
 	Stack<std::string> opstack;		//temporary operator storage
 
 	while (!input.eof()) {
 		input >> token;
-		//Numbers
-		if (not_number(token) == false) {
-			postfix.enqueue(token);
+		//Operands
+		if (is_operand(token) == true) {
+			builder.build_operand(token);
 		}
 		//Left Parenthesis
 		else if (token == "(") {
@@ -57,7 +49,7 @@ bool Client::infix_to_postfix(const std::string& infix, Queue<std::string>& post
 		else if (token == ")") {
 			//loops until "(" is found or stack is empty
 			while (opstack.is_empty() == false && opstack.top() != "(") {
-				postfix.enqueue(opstack.top());
+				build_op(builder, opstack.top());
 				opstack.pop();
 			}
 			if (opstack.top() == "(") {
@@ -71,29 +63,37 @@ bool Client::infix_to_postfix(const std::string& infix, Queue<std::string>& post
 		else {
 			//loops until stack is empty, stack.top() is not an operator, or stack.top() is an operator of lower precedence
 			while (opstack.is_empty() == false && precedence(token) <= precedence(opstack.top())) {
-				postfix.enqueue(opstack.top());
+				build_op(builder, opstack.top());
 				opstack.pop();
 			}
 			opstack.push(token);
 		}
-	}
-	//loops until all values of opstack are enqueued to postfix
+	}//end while
+
+	//loops until all values of opstack are built
 	while (opstack.is_empty() == false) {
-		postfix.enqueue(opstack.top());
+		build_op(builder, opstack.top());
 		opstack.pop();
 	}
 
 	return true;
 }
 
-//not_number
-bool Client::not_number(std::string token)
+//is_operand
+bool Client::is_operand(std::string token)
 {
-	std::stringstream s(token);
-	int x = 0;
-	s >> x;
-
-	return s.fail();
+	if (token == "+" ||
+		token == "-" ||
+		token == "*" ||
+		token == "/" ||
+		token == "%" ||
+		token == "(" ||
+		token == ")") {
+		return false;
+	}
+	else {
+		return true;
+	}
 }
 
 //precedence
@@ -110,37 +110,27 @@ int Client::precedence(std::string op)
 	}
 }
 
-//build
-void Client::build(Queue<std::string>& postfix, Abst_Builder & builder)
+//build_op
+void Client::build_op(Abst_Builder& builder, std::string node_val)
 {
-	std::string node_val;	//holds node value from postfix
-	while (postfix.is_empty() == false) {
-		node_val = postfix.dequeue();
-		if (node_val == "+") {
-			builder.build_add();
-		}
-		else if (node_val == "-") {
-			builder.build_sub();
-		}
-		else if (node_val == "*") {
-			builder.build_mult();
-		}
-		else if (node_val == "/") {
-			builder.build_div();
-		}
-		else if (node_val == "%") {
-			builder.build_mod();
-		}
-		else{
-			builder.build_num(node_val);
-		}
+	if (node_val == "+") {
+		builder.build_add();
 	}
-}
-
-//solve
-int Client::solve(Abst_Visitor& visitor)
-{
-	return 0;
+	else if (node_val == "-") {
+		builder.build_sub();
+	}
+	else if (node_val == "*") {
+		builder.build_mult();
+	}
+	else if (node_val == "/") {
+		builder.build_div();
+	}
+	else if (node_val == "%") {
+		builder.build_mod();
+	}
+	else {
+		throw 1;
+	}
 }
 
 //handler
@@ -148,7 +138,7 @@ int Client::solve(Abst_Visitor& visitor)
 //2 - Invalid Operation using zero
 //3 - No operation to solve
 //4 - Invalid Expression
-//5 - Unknown error
+//other - Unknown error
 void Client::handler(int e)
 {
 	if (e == 1) {
@@ -179,22 +169,21 @@ void Client::run_calculator()
 		run = request_input(infix_);
 		try {
 			if (run == true) {
-				infix_to_postfix(infix_, *postfix_);
-				build(*postfix_, *builder_);
-				//std::cout << solve(*visitor_) << std::endl;
+				infix_to_tree(infix_, *builder_);
+				std::cout << visitor_->solve() << std::endl;
 			}
 			else {
 				keepGoing = false;
 			}
-		}
+		}//end try
 		catch (int e) {
 			handler(e);
-			postfix_->clear();
+			builder_->demolish();
 		}
 		catch (...)
 		{
 			handler(-1);
-			postfix_->clear();
+			builder_->demolish();
 		}
-	}
+	}//end while
 }

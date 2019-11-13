@@ -1,4 +1,5 @@
-#include "Node.h"
+#include <sstream>
+#include "../Node.h"
 
 #ifndef _ABST_VISITOR_CPP_
 #define _ABST_VISITOR_CPP_
@@ -9,9 +10,9 @@ class Abst_Visitor
 {
 public:
 
-	virtual void in_order() = 0;
-
 	virtual int solve() = 0;
+
+	virtual int in_order(Node* n) = 0;
 
 protected:
 	//prevent default construction, copy-contruction, and assignment outside of subclasses

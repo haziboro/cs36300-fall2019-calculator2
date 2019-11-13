@@ -1,7 +1,6 @@
 #include <sstream>
-#include "library/Queue.h"
-#include "Abst_Visitor.cpp"
-#include "Abst_Builder.cpp"
+#include "../visitor/Abst_Visitor.cpp"
+#include "../builder/Abst_Builder.cpp"
 
 #ifndef _CLIENT_H_
 #define _CLIENT_H_
@@ -16,9 +15,6 @@ public:
 	//constructor
 	Client(Abst_Builder* builder, Abst_Visitor* visitor);
 
-	//destructor
-	virtual ~Client();
-
 	/**
 	* Prints messages to user and checks user input for errors
 	*
@@ -29,26 +25,26 @@ public:
 	bool request_input(std::string& infix);
 
 	/**
-	* Converts in-fix expressions into post-fix format, stores each operator/operand as a queue element.
+	* Converts in-fix expressions into expression tree utilizing builder to create Nodes.
 	* throws exception if expression contains invalid characters.
 	* 
 	* @param[in]	infix		user input
-	* @param[in]	postfix		Queue to store operators/operands in post-fix format
+	* @param[in]	builder		builder object to construct Nodes
 	* 
 	* @retval		true		expression succesffully converted
 	* @retval		false		expression failed to convert
 	* @exception	4			Invalid Expression
 	**/
-	bool infix_to_postfix(const std::string& infix, Queue<std::string>& postfix);
+	bool infix_to_tree(const std::string& infix, Abst_Builder& builder);
 
 	/**
-	* Checks if a string is a number
+	* Checks if a string is a valid integer or variable operand
 	*
-	* @param[in]	token		string to check
-	* @retval		true		value is not a number
-	* @retval		false		value is a number
+	* @param[in]	token		string to evaluate
+	* @retval		true		value is an operand
+	* @retval		false		value is not an operand
 	**/
-	bool not_number(std::string token);
+	bool is_operand(std::string token);
 
 	/**
 	* Returns precedence level of operators
@@ -59,19 +55,12 @@ public:
 	int precedence(std::string op);
 
 	/**
-	* Converts post-fix arithmetic expression in to an expression tree
+	* Calls builder to create appropriate operator Node containing value node_val
 	* 
-	* @param[in]	postfix		Postfix expression to be converted
 	* @param[in]	builder		Builder object to construct expression tree
+	* @param[in]	node_val	operator/operand value to pass to builder
 	**/
-	void build(Queue<std::string> & postfix, Abst_Builder & builder);
-	/**
-	* Requests visitor to parse expression tree created by builder. Returns result of arithmetic expression.
-	* 
-	* @param[in]	visitor		Visitor to parse expression tree
-	* @return		res			result of arithmetic expression
-	**/
-	int solve(Abst_Visitor & visitor);
+	void build_op(Abst_Builder & builder, std::string node_val);
 
 	/**
 	* Handles exceptions
@@ -86,7 +75,6 @@ private:
 	virtual void run_calculator();
 
 	std::string infix_;
-	Queue<std::string> *postfix_;
 	Abst_Builder * builder_;
 	Abst_Visitor * visitor_;
 

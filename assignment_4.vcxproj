@@ -18,6 +18,21 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="builder\Builder.h" />
+    <ClInclude Include="client\Client.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="visitor\Visitor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="builder\Abst_Builder.cpp" />
+    <ClCompile Include="builder\Builder.cpp" />
+    <ClCompile Include="client\Client.cpp" />
+    <ClCompile Include="driver.cpp" />
+    <ClCompile Include="Node.cpp" />
+    <ClCompile Include="visitor\Abst_Visitor.cpp" />
+    <ClCompile Include="visitor\Visitor.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{9406DA3F-C65B-40C2-8850-157E312FF959}</ProjectGuid>
@@ -150,21 +165,6 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Abst_Builder.cpp" />
-    <ClCompile Include="Abst_Visitor.cpp" />
-    <ClCompile Include="Builder.cpp" />
-    <ClCompile Include="Client.cpp" />
-    <ClCompile Include="driver.cpp" />
-    <ClCompile Include="Node.cpp" />
-    <ClCompile Include="Visitor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Builder.h" />
-    <ClInclude Include="Client.h" />
-    <ClInclude Include="Node.h" />
-    <ClInclude Include="Visitor.h" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

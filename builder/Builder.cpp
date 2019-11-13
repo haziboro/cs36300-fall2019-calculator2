@@ -8,23 +8,11 @@ Builder::Builder(Stack<Node*> & s)
 //destructor
 Builder::~Builder()
 {
-
-}
-
-//make_child
-Node* Builder::make_child()
-{
-	Node* child;
-	if (s_.is_empty() == true) {
-		throw 1;
-	}
-	child = s_.top();
-	s_.pop();
-	return child;
+	demolish();
 }
 
 //build_num
-void Builder::build_num(std::string n)
+void Builder::build_operand(std::string n)
 {
 	Node* new_node = new Node(n);
 	s_.push(new_node);
@@ -84,4 +72,22 @@ void Builder::build_mod()
 	new_node->left_ = make_child();
 
 	s_.push(new_node);
+}
+
+//demolish
+void Builder::demolish()
+{
+
+}
+
+//make_child
+Node* Builder::make_child()
+{
+	Node* child;
+	if (s_.is_empty() == true) {
+		throw 1;
+	}
+	child = s_.top();
+	s_.pop();
+	return child;
 }
