@@ -47,6 +47,7 @@ private:
 	**/
 	Node* make_child();
 
+	//for manipulating tree nodes, root is always top element
 	Stack<Node*> & s_;
 };
 

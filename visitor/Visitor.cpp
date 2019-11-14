@@ -2,13 +2,15 @@
 #include "Visitor.h"
 
 //constructor
-Visitor::Visitor(Stack<Node*> & s)
-	:s_(s) {}
+Visitor::Visitor(Stack<Node*>& s)
+	:s_(s),
+	stored_(NULL){};
 
 //solve
 int Visitor::solve()
 {
 	int result = in_order(s_.top());
+	clear_vars();
 	return result;
 }
 
@@ -68,6 +70,50 @@ int Visitor::converter(std::string num)
 
 //var_handler
 int Visitor::var_handler(std::string var)
-{
-	return 0;
+{	
+	if (stored_ != NULL) {
+		Sto_Var* temp = stored_; //current stored variable to analyze
+		while (temp != NULL) {
+			if (temp->var_ == var) {
+				return temp->value_;
+			}
+			else if (temp->next_ != NULL) {
+				temp = temp->next_;
+			}
+			else {
+				return request_var(var);
+			}
+		}//end while
+	}//end if
+	return request_var(var);
 }
+
+//assign_var
+int Visitor::request_var(std::string var)
+{
+	std::string response;
+	std::cin.clear();
+	std::cout << var << " = ";
+	std::getline(std::cin, response);
+
+	Sto_Var* new_var = new Sto_Var(var, converter(response));
+	new_var->next_ = stored_;
+	stored_ = new_var;
+	return stored_->value_;
+}
+
+//clear_vars
+void Visitor::clear_vars()
+{
+	while (stored_ != NULL) {
+		Sto_Var* temp = stored_->next_;
+		delete stored_;
+		stored_ = temp;
+	}
+}
+
+//Sto_Var
+Visitor::Sto_Var::Sto_Var(std::string var, int value)
+	:var_(var),
+	value_(value),
+	next_(NULL) {}

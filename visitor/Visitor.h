@@ -17,7 +17,7 @@ public:
 	**/
 	int solve();
 
-private:
+protected:
 	/**
 	* Traverse Binary expression tree recursively using in-order traversal
 	* 
@@ -47,7 +47,8 @@ private:
 	int operate(std::string op,int a);
 
 	/**
-	* Converts numbers in string format to integers
+	* Converts numbers in string format to integers. 
+	* If input string is not a number, assumes it's a variable and calls var_handler() for definition
 	*
 	* @param[in]	num			string to convert
 	* @return		x			converted integer
@@ -56,14 +57,37 @@ private:
 	int converter(std::string num);
 
 	/**
-	* Handles variable values and converts them into ints via user input
+	* Handles variable values and converts them into integers via user input
 	* 
 	* @param[in]	var		variable to define
 	* @return		val		integer value of variable
 	**/
 	int var_handler(std::string var);
 
+	/**
+	* Requests user to input variable value, stores assignment in Sto_Var until expression is completed
+	*
+	* @param[in]	var		variable to define
+	**/
+	int request_var(std::string var);
+
+	//deletes all stored variables
+	void clear_vars();
+
+	//Nested linked list element to hold temporary variables
+	struct Sto_Var
+	{
+		Sto_Var(std::string var, int value);	//constructor
+		std::string var_;
+		int value_;
+		Sto_Var* next_;
+	};
+
+private:
+	//for manipulating tree nodes, root is always top element
 	Stack<Node*>& s_;
+	//pointer to linked list of temporary stored variables
+	Sto_Var* stored_;
 
 };
 
