@@ -23,11 +23,11 @@ int Visitor::in_order(Node* n)
 		}
 		return operate(n->data_, in_order(n->left_));	//if right child is NULL but left child contains Node, return integer value of unary operation
 	}
-	return operate(n->data_, in_order(n->left_), in_order(n->right_));	//if neither child is NULL, return result of binary operation
+	return operate(n->data_, in_order(n->right_), in_order(n->left_));	//if neither child is NULL, return result of binary operation
 }
 
 //operate
-int Visitor::operate(std::string op, int a, int b) 
+int Visitor::operate(std::string op, int b, int a) 
 {
 	if (op == "+") {
 		return a + b;

@@ -39,7 +39,17 @@ bool Client::infix_to_tree(const std::string& infix, Abst_Builder& builder)
 		input >> token;
 		//Operands
 		if (is_operand(token) == true) {
-			builder.build_operand(token);
+			//numbers
+			if (not_num(token) == false) {
+				builder.build_operand(token);
+			}
+			//variables
+			else if (is_var(token) == true) {
+				builder.build_operand(token);
+			}
+			else {
+				throw 4;
+			}
 		}
 		//Left Parenthesis
 		else if (token == "(") {
@@ -89,6 +99,26 @@ bool Client::is_operand(std::string token)
 		token == "%" ||
 		token == "(" ||
 		token == ")") {
+		return false;
+	}
+	else {
+		return true;
+	}
+}
+
+//not_num
+bool Client::not_num(std::string token)
+{
+	std::stringstream s(token);
+	int x = 0;
+	s >> x;
+	return s.fail();
+}
+
+//is_var
+bool Client::is_var(std::string token)
+{
+	if (token.size() > 1) {
 		return false;
 	}
 	else {

@@ -47,6 +47,24 @@ public:
 	bool is_operand(std::string token);
 
 	/**
+	* Checks if a string is a number
+	* 
+	* @param[in]	token		string to evaluate
+	* @retval		true		value is not an integer
+	* @retval		false		value is an integer
+	**/
+	bool not_num(std::string token);
+
+	/**
+	* Checks if a string is a valid variable. Valid variables are single character strings that are not supported operators
+	* 
+	* @param[in]	token		string to evaluate
+	* @retval		true		value is a valid variable
+	* @retval		false		value is not a variable
+	**/
+	bool is_var(std::string token);
+
+	/**
 	* Returns precedence level of operators
 	*
 	* @param[in]	op			operator in string format
@@ -71,7 +89,7 @@ public:
 	void handler(int e);
 
 private:
-	//Initializes input loop. Only method that utilizes class member variables.
+	//Initializes input loop
 	virtual void run_calculator();
 
 	std::string infix_;
