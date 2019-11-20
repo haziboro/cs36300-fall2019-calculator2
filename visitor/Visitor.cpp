@@ -9,7 +9,12 @@ Visitor::Visitor(Stack<Node*>& s)
 //solve
 int Visitor::solve()
 {
-	int result = in_order(s_.top());
+	Node* temp = s_.top();
+	s_.pop();
+	if (s_.is_empty() == false) {
+		throw 4;
+	}
+	int result = in_order(temp);
 	clear_vars();
 	return result;
 }

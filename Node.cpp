@@ -12,5 +12,10 @@ Node::Node(std::string data)
 //destructor
 Node::~Node()
 {
-	delete[] left_, right_;
+	if (left_ != NULL) {
+		delete left_;
+	}
+	if (right_ != NULL) {
+		delete right_;
+	}
 }

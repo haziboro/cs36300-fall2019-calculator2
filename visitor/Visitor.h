@@ -11,9 +11,9 @@ public:
 	Visitor(Stack<Node*> & s);
 
 	/**
-	* Return numerical value of top node of Stack s_, throws exception if not present
+	* Evaluates expression located in s, throws exception if more than one element present
 	*
-	* @exception	3		No equation to solve
+	* @exception	4		Invalid expression
 	**/
 	int solve();
 

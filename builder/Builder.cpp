@@ -77,7 +77,12 @@ void Builder::build_mod()
 //demolish
 void Builder::demolish()
 {
-
+	Node* trash;
+	while (s_.is_empty() == false) {
+		trash = s_.top();
+		s_.pop();
+		delete trash;
+	}
 }
 
 //make_child

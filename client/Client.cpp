@@ -215,5 +215,6 @@ void Client::run_calculator()
 			handler(-1);
 			builder_->demolish();
 		}
+		builder_->demolish();
 	}//end while
 }
