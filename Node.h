@@ -9,9 +9,6 @@ struct Node {
 	//constructor
 	Node(std::string data);
 
-	//destructor
-	~Node();
-
 	//operator or operand
 	std::string data_;
 

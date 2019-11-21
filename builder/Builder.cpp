@@ -81,8 +81,17 @@ void Builder::demolish()
 	while (s_.is_empty() == false) {
 		trash = s_.top();
 		s_.pop();
-		delete trash;
+		delete_tree(trash);
 	}
+}
+
+//delete_tree
+void Builder::delete_tree(Node * root) 
+{
+	if (root == NULL) { return; }
+	delete_tree(root->left_);
+	delete_tree(root->right_);
+	std::free(root);
 }
 
 //make_child

@@ -35,8 +35,15 @@ public:
 	//Creates "%" operation Node with two operands as children, pushes to stack.
 	void build_mod();
 
-	//destroys tree elements
+	//destroys tree roots in stacks
 	void demolish();
+
+	/**
+	* Traverses tree using postorder traversal to deallocate all Nodes
+	* 
+	* @param[in]	root	root of expression tree
+	**/
+	void delete_tree(Node* root);
 
 private:
 	/**

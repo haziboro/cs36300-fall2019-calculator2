@@ -9,12 +9,10 @@ Visitor::Visitor(Stack<Node*>& s)
 //solve
 int Visitor::solve()
 {
-	Node* temp = s_.top();
-	s_.pop();
-	if (s_.is_empty() == false) {
+	if (s_.size() != 1) {
 		throw 4;
 	}
-	int result = in_order(temp);
+	int result = in_order(s_.top());
 	clear_vars();
 	return result;
 }
@@ -110,11 +108,12 @@ int Visitor::request_var(std::string var)
 //clear_vars
 void Visitor::clear_vars()
 {
-	while (stored_ != NULL) {
-		Sto_Var* temp = stored_->next_;
-		delete stored_;
-		stored_ = temp;
-	}
+	if (stored_ == NULL) { return; }
+	Sto_Var* trash = stored_;
+	stored_ = stored_->next_;
+	std::free(trash);
+	clear_vars();
+
 }
 
 //Sto_Var
