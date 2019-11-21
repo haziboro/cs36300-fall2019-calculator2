@@ -71,8 +71,12 @@ protected:
 	**/
 	int request_var(std::string var);
 
-	//deletes all stored variables
-	void clear_vars();
+	/**
+	* deletes all stored variables
+	* 
+	* @param[in]	trash	variable node to delete
+	**/
+	void clear_vars(Sto_Var* trash);
 
 	//Nested linked list element to hold temporary variables
 	struct Sto_Var
