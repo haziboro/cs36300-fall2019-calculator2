@@ -36,16 +36,17 @@ public:
 	void build_mod();
 
 	//destroys tree roots in stacks
-	void demolish();
+	void clear_stack();
+
+private:
 
 	/**
 	* Traverses tree using postorder traversal to deallocate all Nodes
-	* 
+	*
 	* @param[in]	root	root of expression tree
 	**/
 	void delete_tree(Node* root);
 
-private:
 	/**
 	* pops top node of stack and returns a pointer to it. Throws exception if stack is empty.
 	*

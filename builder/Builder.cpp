@@ -8,7 +8,7 @@ Builder::Builder(Stack<Node*> & s)
 //destructor
 Builder::~Builder()
 {
-	demolish();
+	clear_stack();
 }
 
 //build_num
@@ -75,7 +75,7 @@ void Builder::build_mod()
 }
 
 //demolish
-void Builder::demolish()
+void Builder::clear_stack()
 {
 	Node* trash;
 	while (s_.is_empty() == false) {
@@ -91,7 +91,7 @@ void Builder::delete_tree(Node * root)
 	if (root == NULL) { return; }
 	delete_tree(root->left_);
 	delete_tree(root->right_);
-	std::free(root);
+	delete root;
 }
 
 //make_child

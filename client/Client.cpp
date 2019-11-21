@@ -208,13 +208,13 @@ void Client::run_calculator()
 		}//end try
 		catch (int e) {
 			handler(e);
-			builder_->demolish();
+			builder_->clear_stack();
 		}
 		catch (...)
 		{
 			handler(-1);
-			builder_->demolish();
+			builder_->clear_stack();
 		}
-		builder_->demolish();
+		builder_->clear_stack();
 	}//end while
 }

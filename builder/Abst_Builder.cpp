@@ -21,7 +21,9 @@ public:
 
 	virtual void build_mod() = 0;
 
-	virtual void demolish() = 0;
+	virtual void clear_stack() = 0;
+
+	virtual void delete_tree(Node* root) = 0;
 
 protected:
 	//prevent default construction, copy-contruction, and assignment outside of subclasses
