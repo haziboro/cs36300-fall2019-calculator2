@@ -13,7 +13,7 @@ int Visitor::solve()
 		throw 4;
 	}
 	int result = in_order(s_.top());
-	if(stored != NULL){ 
+	if(stored_ != NULL){ 
 		clear_vars(stored_);
 		stored_ = NULL;
 	}
@@ -108,16 +108,16 @@ int Visitor::request_var(std::string var)
 	return stored_->value_;
 }
 
-//clear_vars
-void Visitor::clear_vars(Sto_Var * trash)
-{
-	if (trash == NULL) { return; };
-	clear_vars(trash->next_);
-	delete trash;
-}
-
 //Sto_Var
 Visitor::Sto_Var::Sto_Var(std::string var, int value)
 	:var_(var),
 	value_(value),
 	next_(NULL) {}
+
+//clear_vars
+void Visitor::clear_vars(Sto_Var* trash)
+{
+	if (trash == NULL) { return; };
+	clear_vars(trash->next_);
+	delete trash;
+}

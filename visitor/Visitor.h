@@ -71,13 +71,6 @@ protected:
 	**/
 	int request_var(std::string var);
 
-	/**
-	* deletes all stored variables
-	* 
-	* @param[in]	trash	variable node to delete
-	**/
-	void clear_vars(Sto_Var* trash);
-
 	//Nested linked list element to hold temporary variables
 	struct Sto_Var
 	{
@@ -86,6 +79,13 @@ protected:
 		int value_;
 		Sto_Var* next_;
 	};
+
+	/**
+	* deletes all stored variables
+	*
+	* @param[in]	trash	variable node to delete
+	**/
+	void clear_vars(Sto_Var* trash);
 
 private:
 	//for manipulating tree nodes, root is always top element
