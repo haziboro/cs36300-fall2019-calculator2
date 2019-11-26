@@ -4,6 +4,7 @@
 #ifndef _ABST_VISITOR_CPP_
 #define _ABST_VISITOR_CPP_
 
+//COMMENT: This should be in a .h file.
 
 //interface to define Visitor functions
 class Abst_Visitor 
