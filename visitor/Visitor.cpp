@@ -25,6 +25,8 @@ int Visitor::in_order(Node* n)
 {
 	if (n->right_ == NULL) {
 		if (n->left_ == NULL) {
+			//COMMENT: This is a cool design. Can you create a different design though?
+			//Consider doing the string-to-int coversion in the building process.
 			return converter(n->data_);  //if left and right children are NULL, return integer value of operand
 		}
 		return operate(n->data_, in_order(n->left_));	//if right child is NULL but left child contains Node, return integer value of unary operation

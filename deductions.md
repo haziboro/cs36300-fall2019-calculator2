@@ -1,0 +1,1 @@
+- Missing composite pattern @ 1st submission: -5 points
