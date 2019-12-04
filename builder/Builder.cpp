@@ -29,8 +29,8 @@ void Builder::build_var(std::string var)
 void Builder::build_add()
 {
 	
-	Node * left = make_child();
 	Node * right = make_child();
+	Node * left = make_child();
 
 	s_.push(new Add_Node(left, right));
 
@@ -39,8 +39,8 @@ void Builder::build_add()
 //build_sub
 void Builder::build_sub()
 {
-	Node* left = make_child();
 	Node* right = make_child();
+	Node* left = make_child();
 
 	s_.push(new Sub_Node(left, right));
 }
@@ -48,8 +48,8 @@ void Builder::build_sub()
 //build_div
 void Builder::build_div()
 {
-	Node* left = make_child();
 	Node* right = make_child();
+	Node* left = make_child();
 
 	s_.push(new Div_Node(left, right));
 }
@@ -57,8 +57,8 @@ void Builder::build_div()
 //build_mult
 void Builder::build_mult()
 {
-	Node* left = make_child();
 	Node* right = make_child();
+	Node* left = make_child();
 
 	s_.push(new Mult_Node(left, right));
 }
@@ -66,8 +66,8 @@ void Builder::build_mult()
 //build_mod
 void Builder::build_mod()
 {
-	Node* left = make_child();
 	Node* right = make_child();
+	Node* left = make_child();
 
 	s_.push(new Mod_Node(left, right));
 }

@@ -33,7 +33,8 @@ int Visitor::in_order(Node* n)
 		}
 		return n->operate(in_order(n->get_left()));	//if right child is NULL but left child contains Node, return result of unary operation
 	}
-	return n->operate(in_order(n->get_right()), in_order(n->get_left()));	//if neither child is NULL, return result of binary operation
+	int left = in_order(n->get_left()); int right = in_order(n->get_right());
+	return n->operate(left, right);	//if neither child is NULL, return result of binary operation
 }
 
 //check_value
