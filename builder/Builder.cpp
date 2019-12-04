@@ -11,67 +11,74 @@ Builder::~Builder()
 	clear_stack();
 }
 
-//build_num
-void Builder::build_operand(std::string n)
+//build_int
+void Builder::build_int(std::string num)
 {
-	Node* new_node = new Node(n);
-	s_.push(new_node);
+	int a = converter(num);
+	s_.push(new Node(a));
+}
+
+//build_var
+void Builder::build_var(std::string var)
+{
+	if (var.length() > 1) { throw 5; }
+	s_.push(new Var_Node(var));
 }
 
 //build_add
 void Builder::build_add()
 {
-	Node* new_node = new Node("+");
 	
-	new_node->right_ = make_child();
-	new_node->left_  = make_child();
+	Node * left = make_child();
+	Node * right = make_child();
 
-	s_.push(new_node);
+	s_.push(new Add_Node(left, right));
 
 }
 
 //build_sub
 void Builder::build_sub()
 {
-	Node* new_node = new Node("-");
+	Node* left = make_child();
+	Node* right = make_child();
 
-	new_node->right_ = make_child();
-	new_node->left_ = make_child();
-
-	s_.push(new_node);
+	s_.push(new Sub_Node(left, right));
 }
 
 //build_div
 void Builder::build_div()
 {
-	Node* new_node = new Node("/");
+	Node* left = make_child();
+	Node* right = make_child();
 
-	new_node->right_ = make_child();
-	new_node->left_ = make_child();
-
-	s_.push(new_node);
+	s_.push(new Div_Node(left, right));
 }
 
 //build_mult
 void Builder::build_mult()
 {
-	Node* new_node = new Node("*");
+	Node* left = make_child();
+	Node* right = make_child();
 
-	new_node->right_ = make_child();
-	new_node->left_ = make_child();
-
-	s_.push(new_node);
+	s_.push(new Mult_Node(left, right));
 }
 
 //build_mod
 void Builder::build_mod()
 {
-	Node* new_node = new Node("%");
+	Node* left = make_child();
+	Node* right = make_child();
 
-	new_node->right_ = make_child();
-	new_node->left_ = make_child();
+	s_.push(new Mod_Node(left, right));
+}
 
-	s_.push(new_node);
+//converter
+int Builder::converter(std::string num)
+{
+	std::stringstream s(num);
+	int x = 0;
+	s >> x;
+	return x;
 }
 
 //demolish
@@ -89,8 +96,8 @@ void Builder::clear_stack()
 void Builder::delete_tree(Node * root) 
 {
 	if (root == NULL) { return; }
-	delete_tree(root->left_);
-	delete_tree(root->right_);
+	delete_tree(root->get_left());
+	delete_tree(root->get_right());
 	delete root;
 }
 

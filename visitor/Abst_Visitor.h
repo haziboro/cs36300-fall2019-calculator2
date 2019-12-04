@@ -1,5 +1,5 @@
 #include <sstream>
-#include "../Node.h"
+#include "../nodes/Node.h"
 
 #ifndef _ABST_VISITOR_H_
 #define _ABST_VISITOR_H_
@@ -8,7 +8,7 @@
 //RESPONSE: fixed it
 
 //interface to define Visitor functions
-class Abst_Visitor 
+class Abst_Visitor
 {
 public:
 

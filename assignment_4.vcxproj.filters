@@ -22,11 +22,14 @@
     <Filter Include="Source Files\main">
       <UniqueIdentifier>{7e94ca6e-d361-4fe9-ad20-3ed07a4276e5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\nodes">
+      <UniqueIdentifier>{28a7567e-ad15-42d4-9f41-587b19fc2bd2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nodes">
+      <UniqueIdentifier>{6e223cf0-b25c-4195-af5e-a90efcb8aa6c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Node.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="builder\Builder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -36,16 +39,43 @@
     <ClInclude Include="client\Client.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="visitor\Abst_Visitor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="builder\Abst_Builder.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\Binary_Node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\Unary_Node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\Var_Node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\Node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\Add_Node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\Sub_Node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\Mult_Node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\Mod_Node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
+    <ClInclude Include="nodes\Div_Node.h">
+      <Filter>Header Files\nodes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="builder\Abst_Builder.cpp">
-      <Filter>Source Files\builder</Filter>
-    </ClCompile>
     <ClCompile Include="builder\Builder.cpp">
       <Filter>Source Files\builder</Filter>
-    </ClCompile>
-    <ClCompile Include="visitor\Abst_Visitor.cpp">
-      <Filter>Source Files\visitor</Filter>
     </ClCompile>
     <ClCompile Include="visitor\Visitor.cpp">
       <Filter>Source Files\visitor</Filter>
@@ -56,8 +86,32 @@
     <ClCompile Include="driver.cpp">
       <Filter>Source Files\main</Filter>
     </ClCompile>
-    <ClCompile Include="Node.cpp">
-      <Filter>Source Files\main</Filter>
+    <ClCompile Include="nodes\Var_Node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\Node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\Add_Node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\Sub_Node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\Mult_Node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\Div_Node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\Mod_Node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\Binary_Node.cpp">
+      <Filter>Source Files\nodes</Filter>
+    </ClCompile>
+    <ClCompile Include="nodes\Unary_Node.cpp">
+      <Filter>Source Files\nodes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

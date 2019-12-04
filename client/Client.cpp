@@ -41,11 +41,11 @@ bool Client::infix_to_tree(const std::string& infix, Abst_Builder& builder)
 		if (is_operand(token) == true) {
 			//numbers
 			if (not_num(token) == false) {
-				builder.build_operand(token);
+				builder.build_int(token);
 			}
 			//variables
 			else if (is_var(token) == true) {
-				builder.build_operand(token);
+				builder.build_var(token);
 			}
 			else {
 				throw 4;
@@ -164,7 +164,7 @@ void Client::build_op(Abst_Builder& builder, std::string node_val)
 }
 
 //handler
-//1 - Invalid operation
+//1 - Invalid Operation
 //2 - Invalid Operation using zero
 //3 - No operation to solve
 //4 - Invalid Expression
@@ -182,6 +182,9 @@ void Client::handler(int e)
 	}
 	else if (e == 4) {
 		std::cout << "Invalid Expression" << std::endl;
+	}
+	else if (e == 5) {
+		std::cout << "Invalid Variable, must be single character" << std::endl;
 	}
 	else {
 		std::cout << "Unknown error" << std::endl;

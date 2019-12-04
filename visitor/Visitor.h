@@ -1,4 +1,4 @@
-#include "Abst_Visitor.cpp"
+#include "Abst_Visitor.h"
 
 #ifndef _VISITOR_H_
 #define _VISITOR_H_
@@ -27,24 +27,12 @@ protected:
 	int in_order(Node* n);
 
 	/**
-	* Executes binary operation "op" on values "a" and "b"
+	* Checks if a node is a variable. If it is, converts to char and evaluates.
 	* 
-	* @param[in]	op		operation to perform
-	* @param[in]	a		first operand
-	* @param[in]	b		second operand
-	* @return		res		result of operation
+	* @param[in]		n		node to check
+	* @return			val		integer value of node
 	**/
-	int operate(std::string op, int a, int b);
-
-	/**
-	* operate() Overload
-	* Executes Unary operation "op" on value "a"
-	*
-	* @param[in]	op		operation to perform
-	* @param[in]	a		operand
-	* @return		res		result of operation
-	**/
-	int operate(std::string op,int a);
+	int check_value(Node * n);
 
 	/**
 	* Converts numbers in string format to integers. 
@@ -52,7 +40,7 @@ protected:
 	*
 	* @param[in]	num			string to convert
 	* @return		x			converted integer
-	* @exception	2			invalid integer conversion
+	* @exception	5			invalid integer conversion
 	**/
 	int converter(std::string num);
 

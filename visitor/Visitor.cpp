@@ -9,59 +9,42 @@ Visitor::Visitor(Stack<Node*>& s)
 //solve
 int Visitor::solve()
 {
+	if (stored_ != NULL) {
+		clear_vars(stored_);
+		stored_ = NULL;
+	}
 	if (s_.size() != 1) {
 		throw 4;
 	}
 	int result = in_order(s_.top());
-	if(stored_ != NULL){ 
-		clear_vars(stored_);
-		stored_ = NULL;
-	}
+
 	return result;
 }
 
 //in_order
 int Visitor::in_order(Node* n)
 {
-	if (n->right_ == NULL) {
-		if (n->left_ == NULL) {
+	if (n->get_right() == NULL) {
+		if (n->get_left() == NULL) {
 			//COMMENT: This is a cool design. Can you create a different design though?
 			//Consider doing the string-to-int coversion in the building process.
-			return converter(n->data_);  //if left and right children are NULL, return integer value of operand
+			return check_value(n);  //if left and right children are NULL, return integer value of operand
 		}
-		return operate(n->data_, in_order(n->left_));	//if right child is NULL but left child contains Node, return integer value of unary operation
+		return n->operate(in_order(n->get_left()));	//if right child is NULL but left child contains Node, return result of unary operation
 	}
-	return operate(n->data_, in_order(n->right_), in_order(n->left_));	//if neither child is NULL, return result of binary operation
+	return n->operate(in_order(n->get_right()), in_order(n->get_left()));	//if neither child is NULL, return result of binary operation
 }
 
-//operate
-int Visitor::operate(std::string op, int b, int a) 
+//check_value
+int Visitor::check_value(Node* n)
 {
-	if (op == "+") {
-		return a + b;
+	if (n->is_var() == false) {
+		return n->get_data();
 	}
-	else if (op == "-") {
-		return a - b;
+	else {
+		char a = n->get_data();
+		return var_handler(std::string(1, a));
 	}
-	else if (op == "*") {
-		return a * b;
-	}
-	else if (b == 0) {		//prevents divide/mod by zero errors
-		throw 2;
-	}
-	else if (op == "/") {
-		return a / b;
-	}
-	else if (op == "%") {
-		return a % b;
-	}
-}
-
-//operate
-int Visitor::operate(std::string op, int a)
-{
-	throw 5;
-	return 0;
 }
 
 //converter
@@ -103,6 +86,8 @@ int Visitor::request_var(std::string var)
 	std::cin.clear();
 	std::cout << var << " = ";
 	std::getline(std::cin, response);
+
+	if (response.length() > 1) { throw 5; }
 
 	Sto_Var* new_var = new Sto_Var(var, converter(response));
 	new_var->next_ = stored_;

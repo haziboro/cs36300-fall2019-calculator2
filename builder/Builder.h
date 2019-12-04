@@ -1,4 +1,11 @@
-#include "Abst_Builder.cpp"
+#include <sstream>
+#include "Abst_Builder.h"
+#include "../nodes/Add_Node.h"
+#include "../nodes/Sub_Node.h"
+#include "../nodes/Mult_Node.h"
+#include "../nodes/Div_Node.h"
+#include "../nodes/Mod_Node.h"
+#include "../nodes/Var_Node.h"
 
 #ifndef _BUILDER_H_
 #define _BUILDER_H_
@@ -14,11 +21,19 @@ public:
 	~Builder();
 
 	/**
-	* Creates operand Node with no children, pushes Node to Stack s_.
-	* 
-	* @param[in]	n		Operand
+	* Creates Integer Node with no children, pushes Node to Stack s_.
+	*
+	* @param[in]	num		Operand
 	**/
-	void build_operand(std::string n);
+	void build_int(std::string num);
+
+	/**
+	* Creates variable Node with no children, pushes Node to Stack s_. Throws exception if variable contains more than one character.
+	* 
+	* @param[in]	var		variable
+	* @exception	5		Invalid variable
+	**/
+	void build_var(std::string var);
 
 	//Creates "+" operation Node with two operands as children, pushes to stack.
 	void build_add();
@@ -34,6 +49,14 @@ public:
 
 	//Creates "%" operation Node with two operands as children, pushes to stack.
 	void build_mod();
+
+	/**
+	* Converts numbers in string format to integers.
+	*
+	* @param[in]	num			string to convert
+	* @return		x			converted integer
+	**/
+	int converter(std::string num);
 
 	//destroys tree roots in stacks
 	void clear_stack();

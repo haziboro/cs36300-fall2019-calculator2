@@ -1,6 +1,6 @@
 #include <sstream>
-#include "../visitor/Abst_Visitor.cpp"
-#include "../builder/Abst_Builder.cpp"
+#include "../visitor/Abst_Visitor.h"
+#include "../builder/Abst_Builder.h"
 
 #ifndef _CLIENT_H_
 #define _CLIENT_H_

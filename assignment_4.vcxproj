@@ -19,18 +19,34 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="builder\Abst_Builder.h" />
     <ClInclude Include="builder\Builder.h" />
     <ClInclude Include="client\Client.h" />
-    <ClInclude Include="Node.h" />
+    <ClInclude Include="nodes\Add_Node.h" />
+    <ClInclude Include="nodes\Binary_Node.h" />
+    <ClInclude Include="nodes\Div_Node.h" />
+    <ClInclude Include="nodes\Mod_Node.h" />
+    <ClInclude Include="nodes\Mult_Node.h" />
+    <ClInclude Include="nodes\Node.h" />
+    <ClInclude Include="nodes\Sub_Node.h" />
+    <ClInclude Include="nodes\Unary_Node.h" />
+    <ClInclude Include="nodes\Var_Node.h" />
+    <ClInclude Include="visitor\Abst_Visitor.h" />
     <ClInclude Include="visitor\Visitor.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="builder\Abst_Builder.cpp" />
     <ClCompile Include="builder\Builder.cpp" />
     <ClCompile Include="client\Client.cpp" />
     <ClCompile Include="driver.cpp" />
-    <ClCompile Include="Node.cpp" />
-    <ClCompile Include="visitor\Abst_Visitor.cpp" />
+    <ClCompile Include="nodes\Add_Node.cpp" />
+    <ClCompile Include="nodes\Binary_Node.cpp" />
+    <ClCompile Include="nodes\Div_Node.cpp" />
+    <ClCompile Include="nodes\Mod_Node.cpp" />
+    <ClCompile Include="nodes\Mult_Node.cpp" />
+    <ClCompile Include="nodes\Node.cpp" />
+    <ClCompile Include="nodes\Sub_Node.cpp" />
+    <ClCompile Include="nodes\Unary_Node.cpp" />
+    <ClCompile Include="nodes\Var_Node.cpp" />
     <ClCompile Include="visitor\Visitor.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

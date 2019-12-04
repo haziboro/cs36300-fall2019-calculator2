@@ -8,14 +8,20 @@ project (assignment4) {
 
   Source_Files {
 	driver.cpp
-	Node.cpp
+
+	nodes/Node.cpp
+	nodes/Var_Node.cpp
+	nodes/Binary_Node.cpp
+	nodes/Unary_Node.cpp
+	nodes/Add_Node.cpp
+	nodes/Sub_Node.cpp
+	nodes/Mult_Node.cpp
+	nodes/Div_Node.cpp
+	nodes/Mod_Node.cpp
+
 
 	client/Client.cpp
-
-	builder/Abst_Builder.cpp
 	builder/Builder.cpp
-
-	visitor/Abst_Visitor.cpp
 	visitor/Visitor.cpp
   }
 
@@ -24,11 +30,26 @@ project (assignment4) {
   }
 
   Header_Files {
-	Node.h
+
+	nodes/Node.h
+	nodes/Var_Node.h
+	nodes/Binary_Node.h
+	nodes/Unary_Node.h
+	nodes/Add_Node.h
+	nodes/Sub_Node.h
+	nodes/Mult_Node.h
+	nodes/Div_Node.h
+	nodes/Mod_Node.h
+
 
 	client/Client.h
+
+	builder/Abst_Builder.h
 	builder/Builder.h
+
+	visitor/Abst_Visitor.h
 	visitor/Visitor.h
+
 	library/Stack.h
   }
 
