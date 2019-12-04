@@ -62,7 +62,10 @@ bool Client::infix_to_tree(const std::string& infix, Abst_Builder& builder)
 				build_op(builder, opstack.top());
 				opstack.pop();
 			}
-			if (opstack.top() == "(") {
+			if (opstack.is_empty() == true) {
+				throw 4;
+			}
+			else if (opstack.top() == "(") {
 				opstack.pop();
 			}
 			else {

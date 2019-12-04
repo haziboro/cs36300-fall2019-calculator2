@@ -95,7 +95,7 @@ void Builder::clear_stack()
 //delete_tree
 void Builder::delete_tree(Node * root) 
 {
-	if (root == NULL) { return; }
+	if (root == nullptr) { return; }
 	delete_tree(root->get_left());
 	delete_tree(root->get_right());
 	delete root;

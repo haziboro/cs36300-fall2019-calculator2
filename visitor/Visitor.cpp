@@ -4,14 +4,14 @@
 //constructor
 Visitor::Visitor(Stack<Node*>& s)
 	:s_(s),
-	stored_(NULL){};
+	stored_(nullptr){};
 
 //solve
 int Visitor::solve()
 {
-	if (stored_ != NULL) {
+	if (stored_ != nullptr) {
 		clear_vars(stored_);
-		stored_ = NULL;
+		stored_ = nullptr;
 	}
 	if (s_.size() != 1) {
 		throw 4;
@@ -24,10 +24,11 @@ int Visitor::solve()
 //in_order
 int Visitor::in_order(Node* n)
 {
-	if (n->get_right() == NULL) {
-		if (n->get_left() == NULL) {
+	if (n->get_right() == nullptr) {
+		if (n->get_left() == nullptr) {
 			//COMMENT: This is a cool design. Can you create a different design though?
 			//Consider doing the string-to-int coversion in the building process.
+			//RESPONSE: Made the nodes themselves perform their respective operations. Builder now converts to int on node construction.
 			return check_value(n);  //if left and right children are NULL, return integer value of operand
 		}
 		return n->operate(in_order(n->get_left()));	//if right child is NULL but left child contains Node, return result of unary operation
@@ -62,9 +63,9 @@ int Visitor::converter(std::string num)
 //var_handler
 int Visitor::var_handler(std::string var)
 {	
-	if (stored_ != NULL) {
+	if (stored_ != nullptr) {
 		Sto_Var* temp = stored_; //current stored variable to analyze
-		while (temp != NULL) {
+		while (temp != nullptr) {
 			if (temp->var_ == var) {
 				return temp->value_;
 			}
@@ -99,12 +100,12 @@ int Visitor::request_var(std::string var)
 Visitor::Sto_Var::Sto_Var(std::string var, int value)
 	:var_(var),
 	value_(value),
-	next_(NULL) {}
+	next_(nullptr) {}
 
 //clear_vars
 void Visitor::clear_vars(Sto_Var* trash)
 {
-	if (trash == NULL) { return; };
+	if (trash == nullptr) { return; };
 	clear_vars(trash->next_);
 	delete trash;
 }
