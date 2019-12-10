@@ -1,0 +1,109 @@
+#----------------------------------------------------------------------------
+#       Macros
+#----------------------------------------------------------------------------
+CC            = gcc
+CXX           = g++
+LD            = $(CXX) $(CCFLAGS) $(CPPFLAGS)
+AR            = ar
+PICFLAGS      = -fPIC
+CPPFLAGS      = $(PICFLAGS) $(GENFLAGS) -std=c++11 -D_REENTRANT
+OBJEXT        = .o
+OUTPUT_OPTION = -o "$@"
+COMPILE.c     = $(CC) $(CFLAGS) $(CPPFLAGS) -c
+COMPILE.cc    = $(CXX) $(CCFLAGS) $(CPPFLAGS) -c
+LDFLAGS       = -L"."
+CCC           = $(CXX)
+MAKEFILE      = Makefile.assignment4
+DEPENDENCIES  = .depend.$(MAKEFILE)
+BTARGETDIR    = ./
+BIN           = $(BTARGETDIR)assignment4$(EXESUFFIX)$(EXEEXT)
+CAT           = cat
+MV            = mv -f
+RM            = rm -rf
+CP            = cp -p
+NUL           = /dev/null
+MKDIR         = mkdir -p
+TESTDIRSTART  = test -d
+TESTDIREND    = ||
+TOUCH         = touch
+EXEEXT        = 
+LIBPREFIX     = lib
+LIBSUFFIX     = 
+GENFLAGS      = -O
+LDLIBS        = -ldl $(subst lib,-l,$(sort $(basename $(notdir $(wildcard /usr/lib/librt.so /lib/librt.so))))) -lpthread
+OBJS          = driver$(OBJEXT) nodes/Node$(OBJEXT) nodes/Var_Node$(OBJEXT) nodes/Binary_Node$(OBJEXT) nodes/Unary_Node$(OBJEXT) nodes/Add_Node$(OBJEXT) nodes/Sub_Node$(OBJEXT) nodes/Mult_Node$(OBJEXT) nodes/Div_Node$(OBJEXT) nodes/Mod_Node$(OBJEXT) client/Client$(OBJEXT) builder/Builder$(OBJEXT) visitor/Visitor$(OBJEXT)
+SRC           = driver.cpp nodes/Node.cpp nodes/Var_Node.cpp nodes/Binary_Node.cpp nodes/Unary_Node.cpp nodes/Add_Node.cpp nodes/Sub_Node.cpp nodes/Mult_Node.cpp nodes/Div_Node.cpp nodes/Mod_Node.cpp client/Client.cpp builder/Builder.cpp visitor/Visitor.cpp
+LINK.cc       = $(LD) $(LDFLAGS)
+EXPORTFLAGS   = 
+DEPLIBS       = $(foreach lib, , $(foreach libpath, ., $(wildcard $(libpath)/lib$(lib).a)))
+
+#----------------------------------------------------------------------------
+#       Local targets
+#----------------------------------------------------------------------------
+
+all: $(BIN)
+
+$(BIN): $(OBJS) $(DEPLIBS)
+	@$(TESTDIRSTART) "$(BTARGETDIR)" $(TESTDIREND) $(MKDIR) "$(BTARGETDIR)"
+	$(LINK.cc) $(OBJS) $(LDLIBS) $(OUTPUT_OPTION)
+
+generated: $(GENERATED_DIRTY)
+	@-:
+
+driver$(OBJEXT): driver.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) driver.cpp
+
+nodes/Node$(OBJEXT): nodes/Node.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) nodes/Node.cpp
+
+nodes/Var_Node$(OBJEXT): nodes/Var_Node.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) nodes/Var_Node.cpp
+
+nodes/Binary_Node$(OBJEXT): nodes/Binary_Node.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) nodes/Binary_Node.cpp
+
+nodes/Unary_Node$(OBJEXT): nodes/Unary_Node.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) nodes/Unary_Node.cpp
+
+nodes/Add_Node$(OBJEXT): nodes/Add_Node.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) nodes/Add_Node.cpp
+
+nodes/Sub_Node$(OBJEXT): nodes/Sub_Node.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) nodes/Sub_Node.cpp
+
+nodes/Mult_Node$(OBJEXT): nodes/Mult_Node.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) nodes/Mult_Node.cpp
+
+nodes/Div_Node$(OBJEXT): nodes/Div_Node.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) nodes/Div_Node.cpp
+
+nodes/Mod_Node$(OBJEXT): nodes/Mod_Node.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) nodes/Mod_Node.cpp
+
+client/Client$(OBJEXT): client/Client.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) client/Client.cpp
+
+builder/Builder$(OBJEXT): builder/Builder.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) builder/Builder.cpp
+
+visitor/Visitor$(OBJEXT): visitor/Visitor.cpp
+	$(COMPILE.cc) $(EXPORTFLAGS) $(OUTPUT_OPTION) visitor/Visitor.cpp
+
+clean:
+	-$(RM) $(OBJS)
+
+realclean: clean
+	-$(RM) $(BIN)
+
+check-syntax:
+	$(COMPILE.cc) $(EXPORTFLAGS) -Wall -Wextra -pedantic -fsyntax-only $(CHK_SOURCES)
+
+#----------------------------------------------------------------------------
+#       Dependencies
+#----------------------------------------------------------------------------
+
+
+depend:
+	-$(MPC_ROOT)/depgen.pl  $(CFLAGS) $(CCFLAGS) $(CPPFLAGS) -f $(DEPENDENCIES) $(SRC) 2> $(NUL)
+
+-include $(DEPENDENCIES)
