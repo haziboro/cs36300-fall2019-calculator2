@@ -1,0 +1,16 @@
+make[1]: Entering directory '/home/nlui/Documents/CSC363000/fall2019/assignment4-run/jorsteve/cs36300-fall2019-calculator2'
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "driver.o" driver.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "nodes/Node.o" nodes/Node.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "nodes/Var_Node.o" nodes/Var_Node.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "nodes/Binary_Node.o" nodes/Binary_Node.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "nodes/Unary_Node.o" nodes/Unary_Node.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "nodes/Add_Node.o" nodes/Add_Node.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "nodes/Sub_Node.o" nodes/Sub_Node.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "nodes/Mult_Node.o" nodes/Mult_Node.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "nodes/Div_Node.o" nodes/Div_Node.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "nodes/Mod_Node.o" nodes/Mod_Node.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "client/Client.o" client/Client.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "builder/Builder.o" builder/Builder.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -c  -o "visitor/Visitor.o" visitor/Visitor.cpp
+g++  -fPIC -O -std=c++11 -D_REENTRANT -L"." driver.o nodes/Node.o nodes/Var_Node.o nodes/Binary_Node.o nodes/Unary_Node.o nodes/Add_Node.o nodes/Sub_Node.o nodes/Mult_Node.o nodes/Div_Node.o nodes/Mod_Node.o client/Client.o builder/Builder.o visitor/Visitor.o -ldl  -lpthread -o "assignment4"
+make[1]: Leaving directory '/home/nlui/Documents/CSC363000/fall2019/assignment4-run/jorsteve/cs36300-fall2019-calculator2'

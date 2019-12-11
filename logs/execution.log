@@ -1,0 +1,30 @@
+Enter an equation to solve, or type QUIT to exit
+3
+Enter an equation to solve, or type QUIT to exit
+-16
+Enter an equation to solve, or type QUIT to exit
+3
+Enter an equation to solve, or type QUIT to exit
+205
+Enter an equation to solve, or type QUIT to exit
+Invalid Operation
+Enter an equation to solve, or type QUIT to exit
+Invalid Expression
+Enter an equation to solve, or type QUIT to exit
+Invalid Operation using zero
+Enter an equation to solve, or type QUIT to exit
+28
+Enter an equation to solve, or type QUIT to exit
+x = 2
+Enter an equation to solve, or type QUIT to exit
+x = Invalid Variable, must be single character
+Enter an equation to solve, or type QUIT to exit
+20
+Enter an equation to solve, or type QUIT to exit
+x = 6
+Enter an equation to solve, or type QUIT to exit
+
+Passed: 10/11
+Grade: 22.72/25
+
+- couldn't handle input with multiple variables
